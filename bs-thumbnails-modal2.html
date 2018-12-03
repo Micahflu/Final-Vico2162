@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Thumbnails + Modal window</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+		
+		<!-- CSS for this example-->
+		<style>
+			.yellow {
+				background-color: #ffd65a;
+			}
+
+			.example-block {
+				margin-bottom: 4rem;
+			}
+
+			.dark-footer {
+				background-color: #666;
+				color: #eee;
+				padding: 2rem 0 4rem 0;
+				margin-top: 2rem;
+			}
+
+			.dark-footer a {
+				color: #ddd;
+				text-decoration: underline;
+			}
+
+			.dark-footer a:hover {
+				color: #bbb;
+				text-decoration: underline;
+			}
+
+			.jumbotron {
+				margin-bottom: 1rem;
+			}
+
+			h5, h6 {
+				text-transform: uppercase;
+				font-weight: 700;
+				letter-spacing: 0.3px;
+				padding-top: 0.3rem;
+			}
+
+			/* thumbnail layout */
+			.thumbs {
+				margin-top: 1rem;
+			}
+
+			/* modal window */
+			.modal-dialog {
+			  max-width: 85%;
+			}
+			.modal-header {
+		    padding: 0.5rem 1rem 0 1rem;
+		    border-bottom: none;
+			}
+			.caption {
+				margin: 0.5rem 0 0 0;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<!-- Main jumbotron -->
+		<div class="jumbotron yellow">
+			<div class="container">
+				<h1 class="display-4">Thumbnails + Modal window</h1>
+				<p class="lead">A Bootstrap modal window can display content over the page from which it is loaded.</p>
+				<p><a id="details" class="btn btn-secondary" href="https://getbootstrap.com/docs/4.1/components/modal/" target="_blank" role="button">Details</a></p>
+			</div>
+		</div>
+
+		<!-- Start content layout with .container -->
+		<div class="container">
+			
+			<div class="row">
+
+				<div class="col">
+					<p><img class="img-fluid img-thumbnail" src="images/purple-rocks.jpg" data-name="Purple Rocks" data-caption="Visited Purple Rocks this summer." alt="Placeholder image"></p>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-3 thumbs">
+					<p><img class="img-fluid img-thumbnail" src="images/green-catalina.jpg" data-name="Green Catalina" data-caption="Visited Green Catalina this summer." alt="Placeholder image"></p>
+				</div>
+
+				<div class="col-3 thumbs">
+					<p><img class="img-fluid img-thumbnail" src="images/red-market.jpg" data-name="Red Market" data-caption="Visited Red Market this summer." alt="image"></p>
+				</div>
+
+				<div class="col-3 thumbs">
+					<p><img class="img-fluid img-thumbnail" src="images/blue-gate.jpg" data-name="Blue Gate" data-caption="Visited Blue Gate this summer." alt="image"></p>
+				</div>
+
+				<div class="col-3 thumbs">
+					<p><img class="img-fluid img-thumbnail" src="images/yellow-statue.jpg" data-name="Yellow Statue" data-caption="Visited Yellow Statue this summer." alt="image"></p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      
+		      <div class="modal-header">
+		        <h2 id="exampleModalHead" class="modal-title" id="exampleModalLongTitle">Img Name</h2>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div id="exampleModalBody" class="modal-body"></div>
+		      <!-- <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div> -->
+		    </div>
+		  </div>
+		</div>
+
+		<!--  Footer -->
+		<footer class="dark-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p>Data-Visual © 2018</p>
+					</div>
+					<div class="col">
+						<p class="float-right"><a href="#">Back to top</a></p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- JavaScript: first jQuery, then Popper.js, then Bootstrap JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+		<script>
+
+			// enable click event on thumnails
+			$('.img-thumbnail').on ('click', function(e) {
+				var imgSrc = $(this).attr('src');
+				var imgName = $(this).attr('data-name');
+				var imgCaption = $(this).attr('data-caption');
+				console.log(imgSrc);
+
+				// update modal with image
+				var headHtml = imgName;
+				$('#exampleModalHead').html(headHtml);
+
+				var imgHtml = '<img class="img-fluid" src="' + imgSrc + '" alt="image">';
+				imgHtml += '<p class="caption">' + imgCaption + '</p>';
+				$('#exampleModalBody').html(imgHtml);
+
+				// open modal
+				$('#exampleModalCenter').modal('toggle');
+
+			});
+
+
+
+  		Holder.addTheme('thumb', {
+		    bg: '#888',
+		    fg: '#eee',
+		    text: 'PHOTO'
+		  });
+		</script>
+
+	</body>
+
+</html>
